@@ -6,7 +6,7 @@ import com.reign.sgonzales.betest.integration.dto.Hit;
 import com.reign.sgonzales.betest.mappers.ArticleMapper;
 import com.reign.sgonzales.betest.repository.ArticleRepository;
 import com.reign.sgonzales.betest.service.IntegrationService;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +24,7 @@ public class IntegrationServiceImpl implements IntegrationService {
     }
 
     @Override
-    @Scheduled(fixedRateString = "${app.integration.schedule.fixedrate}")
+    @Async
     public void UpdateHackerNewsArticles() {
         Optional<HackerNewResponse> response = hackerNewsClient.getInfo();
         if (response.isPresent() && !response.get().hits().isEmpty()) {
