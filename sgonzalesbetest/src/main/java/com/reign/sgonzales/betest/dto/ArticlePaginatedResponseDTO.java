@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ArticlePaginatedResponse {
+public class ArticlePaginatedResponseDTO {
     private List<ArticleDTO> data;
     private int currentPage;
     private int pages;

@@ -1,6 +1,6 @@
 package com.reign.sgonzales.betest.service.impl;
 
-import com.reign.sgonzales.betest.dto.ArticlePaginatedResponse;
+import com.reign.sgonzales.betest.dto.ArticlePaginatedResponseDTO;
 import com.reign.sgonzales.betest.entities.Article;
 import com.reign.sgonzales.betest.enums.MonthWordEnum;
 import com.reign.sgonzales.betest.mappers.ArticleMapper;
@@ -26,11 +26,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticlePaginatedResponse find(Integer page, Integer size, String author, String tag, String title,
+    public ArticlePaginatedResponseDTO find(Integer page, Integer size, String author, String tag, String title,
             MonthWordEnum month) {
         Pageable pageable = PageRequest.of(page - 1, size);
         Page<Article> pageobject = articleRepository.findArticleByAuthorContainingIgnoreCase(author, pageable);
-        return ArticlePaginatedResponse.builder().pages(pageobject.getTotalPages()).currentPage(page).size(size)
+        return ArticlePaginatedResponseDTO.builder().pages(pageobject.getTotalPages()).currentPage(page).size(size)
                 .count(pageobject.getTotalElements()).data(pageobject.map(articleMapper::fromArticle).toList()).build();
     }
 
