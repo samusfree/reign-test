@@ -9,9 +9,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Objects;
 import java.util.Optional;
 
-@Component
+@Component("hackerNewsClient")
 @Slf4j
-public class HackerNewClient {
+public class HackerNewsClient {
     @Value("${app.integration.hackernews.url}")
     String urlIntegration;
 

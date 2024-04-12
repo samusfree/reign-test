@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo
+    env_file: ./mongo-config/.env-mongo
+    container_name: mongobesgonzales
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-config/data:/data/db
+      - ./mongo-config/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  mongodb-express:
+    image: mongo-express
+    env_file: ./mongo-config/.env-mongo
+    container_name: mongoexpressbesgonzales
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongodb
