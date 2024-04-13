@@ -34,10 +34,18 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.10.2'
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.11.0'
+	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.11.0'
 }
 
 tasks.named('test') {
+	jvmArgs = [
+			'-XX:+EnableDynamicAgentLoading',
+	]
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
 
 jacoco {
@@ -56,25 +64,24 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 
-test {
-	finalizedBy jacocoTestReport
-}
-
 nativeTest {
 	finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
-	dependsOn nativeTest
+	dependsOn test
 	afterEvaluate {
-		classDirectories.setFrom(files(classDirectories.files.collect {
+		classDirectories.setFrom files(classDirectories.files.collect {
 			fileTree(dir: it, exclude: [
-					"com/nisum/testnisum/configuration/**",
-					"com/nisum/testnisum/data/**",
-					"com/nisum/testnisum/security/CustomUserDetails.class",
-					"com/nisum/testnisum/dto/**",
-					"com/nisum/testnisum/TestnisumApplication.class"
+					"com/reign/sgonzales/betest/configuration/**",
+					"com/reign/sgonzales/betest/entities/**",
+					"com/reign/sgonzales/betest/enums/**",
+					"com/reign/sgonzales/betest/integration/**",
+					"com/reign/sgonzales/betest/repository/**",
+					"com/reign/sgonzales/betest/security/TokenUserDetails.class",
+					"com/reign/sgonzales/betest/dto/**",
+					"com/reign/sgonzales/betest/Application.class"
 			])
-		}))
+		})
 	}
 }

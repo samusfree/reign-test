@@ -4,7 +4,7 @@ import com.reign.sgonzales.betest.integration.client.HackerNewsClient;
 import com.reign.sgonzales.betest.integration.dto.HackerNewResponse;
 import com.reign.sgonzales.betest.integration.dto.Hit;
 import com.reign.sgonzales.betest.mappers.ArticleMapper;
-import com.reign.sgonzales.betest.repository.ArticleRepository;
+import com.reign.sgonzales.betest.data.repository.ArticleRepository;
 import com.reign.sgonzales.betest.service.IntegrationService;
 import org.springframework.scheduling.annotation.Async;
 

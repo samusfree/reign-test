@@ -22,7 +22,7 @@ public class Article {
     private String author;
     private String text;
     private Date createAt;
-    private int createdAtTimestamp;
+    private long createdAtTimestamp;
     private String title;
     private String url;
     private Date updatedAt;
