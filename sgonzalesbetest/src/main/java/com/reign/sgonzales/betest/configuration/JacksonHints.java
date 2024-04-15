@@ -1,17 +1,22 @@
 package com.reign.sgonzales.betest.configuration;
 
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import com.reign.sgonzales.betest.dto.ArticleDTO;
+
 import com.reign.sgonzales.betest.dto.ArticlePaginatedResponseDTO;
 import com.reign.sgonzales.betest.dto.LoginRequestDTO;
+
 import com.reign.sgonzales.betest.dto.LoginResponseDTO;
 import com.reign.sgonzales.betest.integration.dto.HackerNewResponse;
 import com.reign.sgonzales.betest.integration.dto.Hit;
 import lombok.SneakyThrows;
+
 import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.aot.hint.TypeHint;
+
 import org.springframework.aot.hint.TypeReference;
 import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.context.annotation.Configuration;
