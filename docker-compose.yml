@@ -7,10 +7,16 @@ services:
     container_name: mongobesgonzales
     restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     volumes:
       - ./mongo-config/data:/data/db
       - ./mongo-config/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      net:
+        aliases:
+          - mongo
 
   mongodb-express:
     image: mongo-express
@@ -18,6 +24,29 @@ services:
     container_name: mongoexpressbesgonzales
     restart: always
     ports:
-      - 8081:8081
+      - "8081:8081"
     depends_on:
       - mongodb
+    networks:
+      net:
+        aliases:
+          - mongo-express
+
+  sgonzalesbetest-backend:
+    build: ./sgonzalesbetest
+    image: sgonzales/backend:v1
+    env_file: .env
+    container_name: sgonzalesbetest-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      net:
+        aliases:
+          - sgonzales-backend
+
+networks:
+  net:
