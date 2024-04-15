@@ -69,14 +69,13 @@ An authorization parameter with a JWT must be sent in the headers to access the 
 
 ### steps
 1. Clone the repo
-2. Install java 17 (SDK Man or from another install manager)
-3. inside the repo on the console run the ./mvnw test for run the unit test of the project (macOS / linux) / mvnw.cmd
-   test (windows)
-4. Inside the repo on the console run ./mvnw spring-boot:run to start the app / mvnw.cmd spring-boot:run (windows). The
-   project runs on the default port 8080.
+2. Inside the root folder of the project run docker-compose up -d this will generate the backend image (take patience because is using graalvm native compile) after that will load mongo, mongo express and backend. For the backend the port is 8080
+3. To generate JWT token for user (Only can find Articles) use user/password; for the admin user (Populate BD, Delete an article) use adminreing/password
+4. To populate the bd use the Populate BD Endpoint en postman but is required generate the JWT with adminreing user
 5. Use the postman collection to test [Postman collection](readme-files/reign.postman_collection.json) inside this collection there are the 3 generated endpoints one with the localhost URL and another with a cloud vendor url.
 6. To test first you must create the Account with the account endpoint (there is examples in postman) and after that use the witdraw endpoint to generate the operations (there are examples in postman). Additionallyly there is a list endpoint to review the saved data by user.
-7. Also, can enter to the swagger-ui [Swagger UI](http://localhost:8080/swagger-doc/webjars/swagger-ui/index.html)
+7. To enter to the [Swagger UI](http://localhost:8080/articles-api/docs/swagger-ui/index.html)
+8. To enter to the [Mongo Express](http://localhost:8081/)
 
 ## Test evidences
 
