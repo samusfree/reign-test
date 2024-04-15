@@ -33,5 +33,6 @@ jobs:
           java --version
           native-image --version
       - name: Example step using Gradle plugin # https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html
+        uses: ./sgonzalesbetest
         working-directory: ./sgonzalesbetest
         run: gradlew build
